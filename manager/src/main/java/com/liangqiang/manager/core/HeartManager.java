@@ -47,14 +47,14 @@ public class HeartManager {
 
     public void heart(HeartReq req) {
         log.info("heart {}", req);
-        String key = req.getProxyHost() + ":" + req.getProxyPort();
+        String key = buildKey(req.getProxyHost(), req.getProxyPort());
         HEART_MAP.put(key, req);
         HEART_TIME_MAP.put(key, System.currentTimeMillis());
     }
 
     public String dial(DialReq req) {
         log.info("dial {}", req);
-        String key = req.getProxyHost() + ":" + req.getProxyPort();
+        String key = buildKey(req.getProxyHost(), req.getProxyPort());
         HeartReq heartReq = HEART_MAP.get(key);
         String url = String.format("http://%s:%s/api/v1/dial", heartReq.getHost(), heartReq.getPort());
         return RestUtils.get(url, String.class);
@@ -62,5 +62,9 @@ public class HeartManager {
 
     public Object getAll() {
         return HEART_MAP.keySet();
+    }
+
+    private String buildKey(String proxyHost, Integer proxyPort) {
+        return proxyHost + ":" + proxyPort;
     }
 }
