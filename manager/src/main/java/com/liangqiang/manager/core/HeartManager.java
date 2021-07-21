@@ -56,6 +56,9 @@ public class HeartManager {
         log.info("dial {}", req);
         String key = buildKey(req.getProxyHost(), req.getProxyPort());
         HeartReq heartReq = HEART_MAP.get(key);
+        if (heartReq == null) {
+            return "代理服务器不存在";
+        }
         String url = String.format("http://%s:%s/api/v1/dial", heartReq.getHost(), heartReq.getPort());
         return RestUtils.get(url, String.class);
     }
