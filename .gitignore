@@ -1,0 +1,17 @@
+*.iml
+.metadata
+target
+.project
+.classpath
+.settings
+bin
+.idea
+test-output
+*.log
+.DS_store
+derby.log
+catalina.home_IS_UNDEFINED
+disconf
+*.bak
+src/main/resources/application-*.yml
+coverage-report
