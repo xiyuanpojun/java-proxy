@@ -52,9 +52,7 @@ public class HttpProxyServerManager {
         config.setAuthenticationProvider(new BasicHttpProxyAuthenticationProvider() {
             @Override
             protected boolean authenticate(String usr, String pwd) {
-                boolean match = cusproxyConfig.getUser().equals(usr) && cusproxyConfig.getPassword().equals(pwd);
-                log.info("{}-{}正在认证，认证结果{}。", usr, pwd, match);
-                return match;
+                return cusproxyConfig.getUser().equals(usr) && cusproxyConfig.getPassword().equals(pwd);
             }
         });
 
