@@ -2,6 +2,7 @@ package com.liangqiang.proxy.core;
 
 import com.liangqiang.proxy.config.CusheartConfig;
 import com.liangqiang.proxy.dto.HeartReq;
+import com.liangqiang.proxy.utils.IPUtils;
 import com.liangqiang.proxy.utils.RestUtils;
 import com.liangqiang.proxy.utils.SpringUtils;
 import lombok.RequiredArgsConstructor;
@@ -9,6 +10,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.concurrent.TimeUnit;
 
 @Slf4j
@@ -34,9 +38,9 @@ public class HeartManager {
 
     private void process() {
         HeartReq req = HeartReq.builder()
-                .host("127.0.0.1")
+                .host(IPUtils.getIp())
                 .port(SpringUtils.getRunTimePort())
-                .proxyHost("127.0.0.1")
+                .proxyHost(IPUtils.getIp())
                 .proxyPort(SpringUtils.getProperty("cusproxy.port", Integer.class))
                 .build();
         String post = RestUtils.post(cusheartConfig.getUrl(), String.class, req, null);
