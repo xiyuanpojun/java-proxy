@@ -44,6 +44,6 @@ public class HeartManager {
                 .proxyPort(SpringUtils.getProperty("cusproxy.port", Integer.class))
                 .build();
         String post = RestUtils.post(cusheartConfig.getUrl(), String.class, req, null);
-        log.info("heart rsp {}", post);
+        log.info("heart {} {}", req.toString(), post);
     }
 }
