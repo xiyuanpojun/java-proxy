@@ -16,7 +16,7 @@ public class ApiController {
     @PostMapping("v1/heart")
     public String heart(@RequestBody HeartReq req) {
         heartManager.heart(req);
-        return "b";
+        return System.currentTimeMillis() + "";
     }
 
     @GetMapping("v1/dial")
