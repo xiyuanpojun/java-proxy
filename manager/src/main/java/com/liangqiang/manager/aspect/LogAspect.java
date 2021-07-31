@@ -94,7 +94,6 @@ public class LogAspect {
         return ERROR_PATH_METHOD_NAME.equalsIgnoreCase(methodName) || HEAD.equalsIgnoreCase(method);
     }
 
-
     @Pointcut("execution(public * com.liangqiang.manager.controller..*.*(..))")
     public void pointCutMethod() {
     }
