@@ -8,11 +8,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 @Slf4j
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
@@ -63,8 +62,8 @@ public class HeartManager {
         return RestUtils.get(url, String.class);
     }
 
-    public Object getAll() {
-        return HEART_MAP.keySet();
+    public List<String> getAll() {
+        return new ArrayList<>(HEART_MAP.keySet());
     }
 
     private String buildKey(String proxyHost, Integer proxyPort) {
