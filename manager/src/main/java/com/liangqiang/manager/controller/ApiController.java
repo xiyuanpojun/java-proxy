@@ -1,5 +1,6 @@
 package com.liangqiang.manager.controller;
 
+import com.liangqiang.manager.anno.ResubmitCheck;
 import com.liangqiang.manager.core.HeartManager;
 import com.liangqiang.manager.dto.DialReq;
 import com.liangqiang.manager.dto.HeartReq;
@@ -21,6 +22,7 @@ import java.util.List;
 public class ApiController {
     private final HeartManager heartManager;
 
+    @ResubmitCheck
     @ApiOperation("心跳API")
     @PostMapping("v1/heart")
     public String heart(@Validated @RequestBody HeartReq req) {
@@ -28,6 +30,7 @@ public class ApiController {
         return System.currentTimeMillis() + "";
     }
 
+    @ResubmitCheck(expire = 10)
     @ApiOperation("对代理下发拨号指令")
     @GetMapping("v1/dial")
     public String dial(DialReq req) {

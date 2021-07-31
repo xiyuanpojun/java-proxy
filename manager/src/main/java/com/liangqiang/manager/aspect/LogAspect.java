@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.context.request.RequestAttributes;
@@ -17,6 +18,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Slf4j
+@Order(2)
 @Aspect
 @Component
 public class LogAspect {
