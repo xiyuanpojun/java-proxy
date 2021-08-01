@@ -38,9 +38,9 @@ public class HeartManager {
 
     private void process() {
         HeartReq req = HeartReq.builder()
-                .host(IPUtils.getIp())
+                .host(IPUtils.getLocalHost())
                 .port(SpringUtils.getRunTimePort())
-                .proxyHost(IPUtils.getIp())
+                .proxyHost(IPUtils.getLocalHost())
                 .proxyPort(SpringUtils.getProperty("cusproxy.port", Integer.class))
                 .build();
         String post = RestUtils.post(cusheartConfig.getUrl(), String.class, req, null);

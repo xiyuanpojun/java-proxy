@@ -4,6 +4,7 @@ import com.liangqiang.manager.anno.ResubmitCheck;
 import com.liangqiang.manager.core.HeartManager;
 import com.liangqiang.manager.dto.DialReq;
 import com.liangqiang.manager.dto.HeartReq;
+import com.liangqiang.manager.utils.KafkaUtils;
 import com.liangqiang.manager.utils.Result;
 import com.liangqiang.manager.utils.ResultCode;
 import io.swagger.annotations.Api;
@@ -40,6 +41,7 @@ public class ApiController {
     @ApiOperation("获取系统内所有代理")
     @GetMapping("v1/get_all")
     public Result<List<String>> getAll() {
+        KafkaUtils.send("t" + (System.currentTimeMillis() % 2), Math.random());
         return ResultCode.SUCCESS.bindResult(heartManager.getAll());
     }
 }
